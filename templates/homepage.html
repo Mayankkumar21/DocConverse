@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage - File Upload</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='styles.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-white dark-mode text-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col justify-center items-center min-h-screen">
+        <h1 class="text-3xl font-semibold text-white mb-4">Upload a File</h1>
+        <form id="file-upload-form" class="w-full max-w-lg">
+          <div class="flex flex-wrap mb-4">
+            <label
+              for="file"
+              class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
+              >Choose a file:</label
+            >
+            <input
+              type="file"
+              id="file"
+              name="file"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn-purple-light hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Upload
+          </button>
+        </form>
+      </div>
+    </div>
+    <script>
+      const form = document.getElementById("file-upload-form");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const response = await fetch("/upload", {
+          method: "POST",
+          body: formData,
+        });
+        if (response.ok) {
+          window.location.href = "/chat";
+        } else {
+          alert("Error uploading file. Please try again.");
+        }
+      });
+    </script>
+  </body>
+</html>

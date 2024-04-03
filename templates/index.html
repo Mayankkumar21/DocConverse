@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConverseGPT</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Dark theme */
+      body {
+        background-color: #1a202c;
+        color: #cbd5e0;
+      }
+
+      /* Purple button */
+      .purple-button {
+        background-color: #8a4baf;
+      }
+
+      .purple-button:hover {
+        background-color: #6d3685;
+      }
+
+      /* Loading spinner */
+      .lds-ring,
+      .lds-ring div {
+        box-sizing: border-box;
+      }
+      .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+      .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid currentColor;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: currentColor transparent transparent transparent;
+      }
+      .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+      .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+      .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+      @keyframes lds-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mx-auto py-8">
+      <div class="max-w-lg mx-auto text-left">
+        <h1 class="text-5xl mb-4 text-white ml-1">ConverseGPT</h1>
+
+        <textarea
+          id="prompt"
+          class="w-full h-32 px-4 py-2 border rounded-md bg-gray-700 text-gray-300"
+          placeholder="Type your prompt here..."
+        ></textarea>
+        <button
+          id="generateBtn"
+          class="mt-8 px-4 py-2 rounded-md purple-button text-white hover:bg-purple-700"
+        >
+          Generate Response
+        </button>
+        <p class="text-sm text-center mt-4">
+          ConverseGPT can make mistakes. Consider checking important
+          information.
+        </p>
+        <div id="response" class="mt-4"></div>
+        <!-- Loading spinner -->
+        <div id="loadingSpinner" class="hidden flex justify-center mt-4">
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="static/app.js"></script>
+  </body>
+</html>
